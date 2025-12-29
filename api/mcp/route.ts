@@ -1,6 +1,7 @@
 import pdf from 'pdf-parse';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { tool, params } = body;
@@ -9,7 +10,7 @@ export async function POST(request: Request) {
       const pdfBuffer = Buffer.from(params.pdf.data, 'base64');
       const data = await pdf(pdfBuffer);
       
-      return Response.json({
+      return NextResponse.json({
         type: 'tool_result',
         tool: 'pdf_to_text',
         content: {
@@ -19,12 +20,12 @@ export async function POST(request: Request) {
       });
     }
   } catch (e) {
-    return Response.json({ error: 'PDF processing failed' }, { status: 400 });
+    return NextResponse.json({ error: 'PDF processing failed' }, { status: 400 });
   }
 }
 
 export async function GET() {
-  return Response.json({
+  return NextResponse.json({
     type: 'ready',
     tools: [{
       name: 'pdf_to_text',
@@ -37,3 +38,4 @@ export async function GET() {
     }]
   });
 }
+
