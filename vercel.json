@@ -1,7 +1,8 @@
 {
   "functions": {
     "api/mcp/route.ts": {
-      "runtime": "edge"
+      "runtime": "nodejs18.x"
     }
   }
 }
+
