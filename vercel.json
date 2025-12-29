@@ -1,8 +1,7 @@
 {
   "functions": {
     "api/mcp/route.ts": {
-      "runtime": "nodejs18.x"
+      "maxDuration": 30
     }
   }
 }
-
